@@ -14,8 +14,9 @@ const UserHome = () => {
   return user ? (
     <div className="App">
       <header className="App-header">
-        <p>Welcom to Vodafone</p>
-        <h1> You are logged in</h1>
+        <h1>Welcom to Vodafone</h1>
+        <h2> You are logged in</h2>
+        <h3> your login is saved in your cookies, To test again please clean your cookies</h3>
       </header>
     </div>
   ) : (

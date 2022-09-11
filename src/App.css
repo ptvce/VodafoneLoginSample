@@ -1,3 +1,35 @@
+.App {
+font-size: 14px;
+display: flex;
+text-align: center;
+justify-content: center;
+}
+
+@media (max-width: 500px)
+{
+  .login-container {
+    background-image: none;
+  }
+  .login-form-container {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    box-shadow: none;
+    max-height: inherit;
+    max-width: 100%;
+    margin: 0px;
+  }
+  .App {
+    width: 100%;
+    overflow-y: hidden;
+    min-width: 320px;
+    max-height: inherit;
+    margin: 0px;
+    padding: 29px 15px 61px;
+    }
+}
+
 .login-container{
   height: 100%;
     width: 100%;
@@ -20,7 +52,7 @@
 }
 
 .login-form-container {
-  width: 480px;
+  width: 380px;
     height: auto;
     max-height: min-content;
     background: white;
@@ -40,10 +72,11 @@
     border-radius: 6px;
 }
 
+
 .login-logo {
   width: 56px;
   height: 56px;
-  margin: 0px auto 24px;
+  margin: 0px auto 0px;
   text-align: center;
 }
 
@@ -57,15 +90,15 @@
 
 .login-summary {
   flex-direction: row;
-  padding-right: 50px;
-  padding-left: 50px;
+  padding-right: 91px;
+  padding-left: 91px;
   text-align: center;
   font-weight: inherit;
 }
 
 .login-input-container {
   flex-direction: row;
-  padding: 13px 50px 13px 50px;
+  padding: 0px 50px 0px 50px;
   background-clip: padding-box;
   text-align: center;
 }
@@ -86,7 +119,7 @@
   width: 250px;
   height: 40px;
   display: inline-block;
-  font-size: 18px;
+  font-size: 14px;
   color: white;
   background-color: hwb(0deg 80% 20%);
   padding: 10px 0px;
@@ -112,13 +145,14 @@
   text-decoration: underline;
   color: rgb(51, 51, 51);
   margin: 19px auto auto;
+  cursor: pointer;
 }
 
 .line {
   width: 250px;
   display: block;
   height: 1px;
-  margin: 30px auto;
+  margin: 30px auto 0px auto;
   border: 1px solid rgb(151, 151, 151);
 }
 

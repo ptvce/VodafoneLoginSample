@@ -12,17 +12,21 @@ import PageLoader from "../../components/page-loader";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import MessageBox from "../../components/messageBox-component";
+import { australianPhonenumberRegex } from "../../utils/ConstantValues";
 
 const Login = () => {
   let subtitle;
   const navigate = useNavigate();
   const [info, setInfo] = useState({});
   const [state, setState] = useState({
-    data: { mobile: "", password: "" },
+    data: { mobile: "" },
     errors: {},
   });
   const [show, setShow] = useState(false);
-
+  const ausPhoneValidation = (value) => {
+    const regex = new RegExp(australianPhonenumberRegex);
+    return regex.test(value);
+  };
   useEffect(() => {
     infoService
       .getLoginFormInfo()
@@ -41,9 +45,9 @@ const Login = () => {
   };
   const handleChange = ({ currentTarget: input }) => {
     const errors = { ...state.errors };
-    // const errorMessage = validateProperty(input);
-    //if (errorMessage) errors[input.name] = errorMessage;
-    //else delete errors[input.name];
+    const errorMessage = ausPhoneValidation(input.value);
+    if (!errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
 
     const data = { ...state.data };
     data[input.name] = input.value;
@@ -52,12 +56,24 @@ const Login = () => {
   };
   const loginUser = async () => {
     const result = await authService.login(state.data.mobile);
-    if (result.data.status) {
-      navigate("/home");
-      toast.success(<MessageBox title="Hi user" message="" linkText={result.data.message} link="/home" />)
+    if (result.data.validation) {
+      if (result.data.isExist) {
+        navigate("/home");
+        toast.success(
+          <MessageBox
+            title="Hi user"
+            message=""
+            linkText={result.data.message}
+            link="/home"
+          />
+        );
+      } else {
+        toast.error(LOGIN.MOBILE_NOT_EXIST);
+      }
+    } else {
+      toast.error(LOGIN.MOBILE_FORMAT_NOT_VALID);
     }
   };
-
   const goToHome = () => {
     navigate("/home");
   };
@@ -69,24 +85,32 @@ const Login = () => {
           <div className="login-form-container">
             <div className="login-form">
               <div className="login-logo">
-                <img src={logo} width="30px" height="30px" alt="logo" />
+                <img src={logo} width="40px" height="40px" alt="logo" />
               </div>
               <p className="login-title">{info.data.title}</p>
               <div className="login-summary">
                 <p>{info.data.summary}</p>
               </div>
               <br />
-              <div className="login-input-container">
-                <input
-                  className="login-input"
-                  onChange={(event) => handleChange(event)}
-                  name="mobile"
-                  placeholder={LOGIN.MOBILE}
-                />
-              </div>
-              <div className="login-button-container">
-                <button className="login-button" onClick={() => loginUser()}>
-                  SMS me link
+              {info.data.fields.map((f, index) => (
+                <div id={`field-${index}`} className="login-input-container">
+                  <input
+                    className="login-input"
+                    onChange={(event) => handleChange(event)}
+                    name="mobile"
+                    placeholder={f.placeholder}
+                  />
+                   {f.isRequired && !state.data.mobile && (
+                    <div style={{ color: "red" }}>Phone number is required</div>
+                  )}
+                  {state.errors && JSON.stringify(state.errors.mobile) && (
+                    <div style={{ color: "red" }}>Invalid phone number</div>
+                  )}
+                </div>
+              ))}
+              <div className="login-button-container">           
+                <button className="" disabled={!state.data.mobile || (state.errors && JSON.stringify(state.errors.mobile))} onClick={() => loginUser()}>
+                  SMS me link{state.errors && JSON.stringify(state.errors.mobile)}
                 </button>
               </div>
               {info.data.helps.map((h, index) => (
