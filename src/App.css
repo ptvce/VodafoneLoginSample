@@ -2,37 +2,142 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-container{
+  height: 100%;
+    width: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-image:      url(https://www.vodafone.com.au/images/generic/authentication-background.jpg);
+    background-position: center top;
+    background-size: cover;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-center-box { 
+    width: 100%;
+    max-width: 1180px;
+    height: 100%;
+    display: flex;
+    margin: 0px auto;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.login-form-container {
+  width: 480px;
+    height: auto;
+    max-height: min-content;
+    background: white;
+    border-radius: 6px;
+    flex: 1 1 0%;
+    box-shadow: rgb(0 0 0 / 16%) 0px 2px 8px 0px;
+    margin: 60px 0px 45px 2rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form {
+  width: 100%;
+    min-width: 480px;
+    padding: 40px 96px 61px;
+    border-radius: 6px;
+}
+
+.login-logo {
+  width: 56px;
+  height: 56px;
+  margin: 0px auto 24px;
+  text-align: center;
+}
+
+.login-title {
+  flex-direction: row;
+  color: rgb(51, 51, 51);
+  font-size: 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.login-summary {
+  flex-direction: row;
+  padding-right: 50px;
+  padding-left: 50px;
+  text-align: center;
+  font-weight: inherit;
+}
+
+.login-input-container {
+  flex-direction: row;
+  padding: 13px 50px 13px 50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.login-input {
+  width: 240px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid rgb(153, 153, 153);
+  text-align: center;
+}
+
+.login-button-container {
+  flex-direction: row;
+  text-align: center;
+}
+.login-button {
+  width: 250px;
+  height: 40px;
+  display: inline-block;
+  font-size: 18px;
   color: white;
+  background-color: hwb(0deg 80% 20%);
+  padding: 10px 0px;
+  margin-top: 16px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  border: transparent;
+  cursor: pointer;
+  appearance: none;
+  font-family: sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.login-link-container {
+  flex-direction: row;
+  padding: 0px;
+  border: 0px;
+  box-sizing: border-box;
+  display: bock;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-link-button {
+  text-decoration: underline;
+  color: rgb(51, 51, 51);
+  margin: 19px auto auto;
+}
+
+.line {
+  width: 250px;
+  display: block;
+  height: 1px;
+  margin: 30px auto;
+  border: 1px solid rgb(151, 151, 151);
+}
+
+.login-submit-button {
+  width: 250px;
+  height: 40px;
+  display: inline-block;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px 0px;
+  margin: 15px auto;
+  border-radius: 6px;
+  border: 1px solid rgb(51, 51, 51);
+  cursor: pointer;
+  appearance: none;
+  font-family: sans-serif;
 }
