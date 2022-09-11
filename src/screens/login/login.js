@@ -1,8 +1,66 @@
 import "../../App.css";
 import logo from "../../assets/images/128px-Vodafone_icon.svg.png";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import ModalComponent from "../../components/modal-component";
+import authService from "../../services/auth-service";
+import infoService from "../../services/info-service";
+import { LOGIN } from "../../utils/ConstantValues";
+import AccordionHelp from "../../screens/login/components/accordion-help";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import PageLoader from "../../components/page-loader";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import MessageBox from "../../components/messageBox-component";
 
 const Login = () => {
+  let subtitle;
+  const navigate = useNavigate();
+  const [info, setInfo] = useState({});
+  const [state, setState] = useState({
+    data: { mobile: "", password: "" },
+    errors: {},
+  });
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    infoService
+      .getLoginFormInfo()
+      .then((res) => setInfo(res))
+      .catch((error) => toast.error(error));
+  }, []);
+
+  const afterOpenModal = () => {
+    subtitle.style.color = "#808080";
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleOpen = () => {
+    setShow(true);
+  };
+  const handleChange = ({ currentTarget: input }) => {
+    const errors = { ...state.errors };
+    // const errorMessage = validateProperty(input);
+    //if (errorMessage) errors[input.name] = errorMessage;
+    //else delete errors[input.name];
+
+    const data = { ...state.data };
+    data[input.name] = input.value;
+
+    setState({ data, errors });
+  };
+  const loginUser = async () => {
+    const result = await authService.login(state.data.mobile);
+    if (result.data.status) {
+      navigate("/home");
+      toast.success(<MessageBox title="Hi user" message="" linkText={result.data.message} link="/home" />)
+    }
+  };
+
+  const goToHome = () => {
+    navigate("/home");
+  };
 
   return info.data ? (
     <div>
@@ -36,7 +94,17 @@ const Login = () => {
                   <div className="login-link-button" onClick={handleOpen}>
                     {h.title}
                   </div>
-                 
+                  <ModalComponent
+                    show={show}
+                    handleClose={handleClose}
+                    afterOpenModal={afterOpenModal}
+                  >
+                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
+                      {h.modalInfo.title}
+                    </h2>
+                    <p style={{ fontSize: "16px" }}>{h.modalInfo.summary}</p>
+                    <AccordionHelp />
+                  </ModalComponent>
                 </div>
               ))}
 
@@ -58,7 +126,7 @@ const Login = () => {
       </div>
     </div>
   ) : (
-    ''
+    <PageLoader />
   );
 };
 

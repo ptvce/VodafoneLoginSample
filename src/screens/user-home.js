@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import PageLoader from "../components/page-loader";
 import "../App.css";
+import authService from "../services/auth-service";
 
 const UserHome = () => {
   const [user, setUser] = useState();
  
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    setUser( user );
+  }, []);
 
   return user ? (
     <div className="App">
