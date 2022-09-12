@@ -1,6 +1,5 @@
-<img src="icon.png" align="right" />
 
-<h4 align="center">A login form with dynamic data <a href="http://electron.atom.io" target="_blank">Vanda</a>.</h4>
+<h4 align="center">A login form with dynamic data <a href="https://www.linkedin.com/in/parivandaei/" target="_blank">Vandaei</a>.</h4>
 
 
 <p align="center">
