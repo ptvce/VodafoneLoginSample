@@ -4,7 +4,7 @@ import ModalComponent from "../../components/modal-component";
 import authService from "../../services/auth-service";
 import infoService from "../../services/info-service";
 import { LOGIN } from "../../utils/ConstantValues";
-import AccordionComponent from "../../components/accordion-component";
+import AccordionComponent from "../../components/Accordion-component";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import PageLoader from "../../components/page-loader";
