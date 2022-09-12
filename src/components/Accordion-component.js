@@ -3,34 +3,42 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
-// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-// import imageHelp from "./../assets/images/nbn-account@3x.jpg";
 import ArrowDownSvgIcon from "./arrowDownSvgIcon";
 
-const AccordionComponent = ({ summary, details, panelName, defaultPanel }) => {
-  const [expanded, setExpanded] = useState(defaultPanel);
+const AccordionComponent = ({ accordionInfo }) => {
+  const [expanded, setExpanded] = useState("panel0");
 
   const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(!isExpanded ? panel : false);
+    setExpanded(isExpanded ? panel : false);
   };
 
   return (
     <div>
-      <Accordion
-        expanded={expanded === { panelName }}
-        onChange={handleChange(panelName)}
-      >
-        <AccordionSummary
-          expandIcon={<ArrowDownSvgIcon />}
-          aria-controls={`${panelName} bh-content`}
-          id={`${panelName} bh-header`}
-        >
-          <Typography sx={{ flexShrink: 0 }}>{summary}</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>{details}</Typography>
-        </AccordionDetails>
-      </Accordion>
+      {accordionInfo.map((item, index) => (
+        <div id={`panel${index}`}>
+          <Accordion
+            expanded={expanded === `panel${index}`}
+            onChange={handleChange(`panel${index}`)}
+          >
+            <AccordionSummary
+              expandIcon={<ArrowDownSvgIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography
+                sx={{ flexShrink: 0, color: "black" }}
+                variant="subtitle1"
+              >
+                {item.title}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="subtitle2">{item.summary}</Typography>
+              <img src={item.image} alt="" width="400px"></img>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+      ))}
     </div>
   );
 };

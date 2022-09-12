@@ -1,11 +1,10 @@
 import "../../App.css";
-import logo from "../../assets/images/128px-Vodafone_icon.svg.png";
 import React, { useState, useEffect } from "react";
 import ModalComponent from "../../components/modal-component";
 import authService from "../../services/auth-service";
 import infoService from "../../services/info-service";
 import { LOGIN } from "../../utils/ConstantValues";
-import AccordionHelp from "../../screens/login/components/accordion-help";
+import AccordionComponent from "../../components/accordion-component";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import PageLoader from "../../components/page-loader";
@@ -55,7 +54,7 @@ const Login = () => {
     setState({ data, errors });
   };
   const loginUser = async () => {
-    const result = await authService.login(state.data.mobile);
+     const result = await authService.login(state.data.mobile);
     if (result.data.validation) {
       if (result.data.isExist) {
         navigate("/home");
@@ -85,7 +84,7 @@ const Login = () => {
           <div className="login-form-container">
             <div className="login-form">
               <div className="login-logo">
-                <img src={logo} width="40px" height="40px" alt="logo" />
+                <img src={info.data.image} width="40px" height="40px" alt="logo" />
               </div>
               <p className="login-title">{info.data.title}</p>
               <div className="login-summary">
@@ -97,8 +96,8 @@ const Login = () => {
                   <input
                     className="login-input"
                     onChange={(event) => handleChange(event)}
-                    name="mobile"
-                    placeholder={f.placeholder}
+                    name={f.fieldName}
+                    placeholder={f.placeHolder}
                   />
                    {f.isRequired && !state.data.mobile && (
                     <div style={{ color: "red" }}>Phone number is required</div>
@@ -109,7 +108,7 @@ const Login = () => {
                 </div>
               ))}
               <div className="login-button-container">           
-                <button className="" disabled={!state.data.mobile || (state.errors && JSON.stringify(state.errors.mobile))} onClick={() => loginUser()}>
+                <button className="login-button" disabled={!state.data.mobile || (state.errors && JSON.stringify(state.errors.mobile))} onClick={() => loginUser()}>
                   SMS me link{state.errors && JSON.stringify(state.errors.mobile)}
                 </button>
               </div>
@@ -127,7 +126,7 @@ const Login = () => {
                       {h.modalInfo.title}
                     </h2>
                     <p style={{ fontSize: "16px" }}>{h.modalInfo.summary}</p>
-                    <AccordionHelp />
+                    <AccordionComponent accordionInfo={h.modalInfo.accordionInfo}/>
                   </ModalComponent>
                 </div>
               ))}
