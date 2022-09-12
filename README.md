@@ -8,7 +8,7 @@
 </p>
 <br />
 
-![screenshot](https://github.com/ptvce/VodafoneLoginSample/blob/master/assets/images/rec.gif)
+![screenshot](https://github.com/ptvce/VodafoneLoginSample/blob/master/assets/images/rec2.gif)
 
 ## Key Features
 
