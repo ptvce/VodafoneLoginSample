@@ -1,14 +1,13 @@
-<img src="icon.png" align="right" />
 <h4 align="center">A login form with dynamic data <a href="https://www.linkedin.com/in/parivandaei/" target="_blank">Vandaei</a>.</h4>
 
-<h3 aling="center"><a href="https://github.com/ptvce/VodafoneLoginSample/blob/master/src/assets/images/rec.gif" target="_blank">DEMO</a></h3>
+<h3 aling="center"><a href="https://github.com/ptvce/VodafoneLoginSample/blob/master/src/assets/images/rec.gif" target="_blank">an image from DEMO</a></h3>
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
 </p>
 <br />
 
-![screenshot](https://github.com/ptvce/VodafoneLoginSample/blob/master/assets/images/rec2.gif)
+![screenshot](https://github.com/ptvce/VodafoneLoginSample/blob/master/assets/images/rec.gif)
 
 ## Key Features
 
